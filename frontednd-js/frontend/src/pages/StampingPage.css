@@ -1,0 +1,146 @@
+.stamping-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .stamping-page h1 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 900;
+    color: #72be92;
+  }
+  
+  .stamping-page-content {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .sidebar {
+    flex: 1;
+    width: 400px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .sidebar h2 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #72be92;
+    font-weight: 800;
+  }
+  
+  .main-content {
+    flex: 3;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .main-content section {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fdfdfd;
+  }
+  
+  .main-content h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 18px;
+    color: #72be92;
+    font-weight: 800;
+  }
+  
+  button {
+    padding: 8px 16px;
+    margin: 10px 0;
+    background-color: #72be92;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3fec0a;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f1f1f1;
+  }
+  
+  canvas {
+    border: 1px solid #ccc;
+    margin: 10px auto;
+  }
+  
+  .stamp-list { 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .stamp-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-align: center;
+    width: 100px; /* Adjust width as needed */
+    height: 120px; /* Adjust height as needed */
+  }
+  
+  .stamp-list li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+  }
+  
+  .stamp-list li img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    object-fit: contain; /* Ensures the image fits nicely */
+  }
+  
+  .stamp-list li span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    word-wrap: break-word;
+    text-align: center;
+  }
+  
