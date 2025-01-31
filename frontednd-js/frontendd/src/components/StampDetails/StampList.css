@@ -1,0 +1,51 @@
+.stamp-list {
+  margin-top: 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+
+
+.stamp-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0;
+}
+
+.stamp-list th,
+.stamp-list td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.stamp-list th {
+  background-color: #ffffff;
+}
+
+.stamp-list td a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.stamp-list td a:hover {
+  text-decoration: underline;
+}
+
+.stamp-list button {
+  margin: 0 5px;
+  padding: 5px 20px;
+  border: none;
+  background-color: #72be92;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px;
+
+}
+
+.stamp-list button:hover {
+  background-color: #3fec0a;
+}

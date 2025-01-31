@@ -1,0 +1,28 @@
+.document-stamped {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .document-stamped h2 {
+    margin-bottom: 20px;
+  }
+  
+  .document-stamped table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .document-stamped table th,
+  .document-stamped table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .document-stamped table button {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

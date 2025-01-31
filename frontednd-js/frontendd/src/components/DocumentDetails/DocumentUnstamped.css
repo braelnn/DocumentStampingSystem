@@ -1,0 +1,28 @@
+.document-unstamped {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .document-unstamped h2 {
+    margin-bottom: 20px;
+  }
+  
+  .document-unstamped table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .document-unstamped table th,
+  .document-unstamped table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .document-unstamped table button {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
