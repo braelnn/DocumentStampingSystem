@@ -1,0 +1,47 @@
+.qr-code-generator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 30%;
+}
+
+.qr-code-generator button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.qr-code-generator button:hover {
+    background-color: #0056b3;
+}
+
+.qr-code-generator img {
+    max-width: 150px;
+    height: auto;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    padding: 5px;
+    background: white;
+}
+
+.qr-code-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}

@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stamps',
-    'documents',    
+    'documents',
+    'qrcodemanage',    
     'authentication',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -154,6 +155,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+AUTH_USER_MODEL = "authentication.CustomUser"
+
+# Email Configuration for Sending OTP
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"  # Use your SMTP provider (e.g., Gmail, SendGrid, Mailgun)
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "blessingbraelly@gmail.com"  # Your email address
+EMAIL_HOST_PASSWORD = "jygl rbfg aaqg jvyu"  # App password if using Gmail
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 
