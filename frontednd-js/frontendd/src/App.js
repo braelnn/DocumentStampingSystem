@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import StampingPage from './pages/StampingPage'
 import VerifyOTP from './pages/VerifyOTP'
 import QRCodeGenerator from './components/DocumentDetails/QRCodeGenerator'
+import SerialNumber from './components/DocumentDetails/SerialNumber'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -23,9 +24,7 @@ function App() {
         <Route path='/stamps' element={<StampingPage/>}/>
         <Route path='/verify-otp' element={<VerifyOTP/>}/>
         <Route path='/qrcode' element={<QRCodeGenerator/>}/>
-
-
-
+        <Route path='/serial' element={<SerialNumber/>}/>
 
 
     </Routes>

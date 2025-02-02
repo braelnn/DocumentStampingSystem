@@ -113,3 +113,40 @@
 .stamp-wrapper:active {
   cursor: grabbing;
 }
+
+.toggle-visibility {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Adjust font size for readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.toggle-visibility label {
+  display: flex;
+  align-items: center;
+  cursor: pointer; /* Pointer cursor for better UX */
+  color: #333; /* Dark text for contrast */
+  font-weight: 500; /* Slightly bolder text */
+}
+
+.toggle-visibility input[type="checkbox"] {
+  margin-right: 8px; /* Space between checkbox and label text */
+  width: 16px;
+  height: 16px;
+  accent-color: #007bff; /* Custom accent color for the checkbox */
+}
+
+.toggle-visibility input[type="checkbox"]:hover {
+  filter: brightness(1.2); /* Slight hover effect on the checkbox */
+}
+
+.toggle-visibility label:hover {
+  color: #007bff; /* Change label color on hover */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+

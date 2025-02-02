@@ -90,4 +90,21 @@ class DocumentViewSet(viewsets.ModelViewSet):
             as_attachment=True,
             filename=os.path.basename(file_path),
             content_type="application/pdf"
-    )
+            )
+    @action(detail=True, methods=["GET"], url_path="get-serial-number")
+    def get_serial_number(self, request, pk=None):
+        """
+        Returns the serial number for a document.
+        """
+        document = self.get_object()
+        return Response({"serial_number": document.serial_number}, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=["PUT"], url_path="regenerate-serial-number")
+    def regenerate_serial_number(self, request, pk=None):
+        """
+        Regenerates the serial number for a document (if required).
+        """
+        document = self.get_object()
+        document.serial_number = f"SN-{uuid.uuid4().hex[:12].upper()}"
+        document.save()
+        return Response({"serial_number": document.serial_number}, status=status.HTTP_200_OK)

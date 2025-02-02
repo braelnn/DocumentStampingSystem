@@ -6,13 +6,14 @@ import { saveStampedDocument } from "../../services/documentsService";
 import { PDFDocument, rgb } from "pdf-lib";
 import { saveAs } from "file-saver";
 import { Link } from "react-router-dom";
-
 import QRCodeGenerator from "./QRCodeGenerator"; // Import QRCodeGenerator
+import SerialNumber from "./SerialNumber"; // Import SerialNumber component
+
 
 
 pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.8.69/build/pdf.worker.min.mjs';
 
-const DocumentCanvas = ({ documentUrl, onApplyStamp, documentId, onSaveSuccess, onQRGenerated  }) => {
+const DocumentCanvas = ({ documentUrl, onApplyStamp, documentId, onSaveSuccess}) => {
   const [numPages, setNumPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [scale, setScale] = useState(1); // Zoom level
@@ -29,19 +30,34 @@ const DocumentCanvas = ({ documentUrl, onApplyStamp, documentId, onSaveSuccess, 
   const [isDraggingStamp, setIsDraggingStamp] = useState(false);
   const [isQrCodeEmbedded, setIsQrCodeEmbedded] = useState(false);
   const [generatedQRCode, setGeneratedQRCode] = useState(null); // Store QR before applying
-  const [savedDocumentIds, setSavedDocumentIds] = useState(new Set()); // Track saved document IDs
-
-
-
-
+  const [savedDocumentIds, setSavedDocumentIds] = useState(new Set()); 
+  const [serialNumber, setSerialNumber] = useState(""); // Store the serial number
+  const [isSerialVisible, setIsSerialVisible] = useState(true); // Visibility toggle
+  const [serialPosition, setSerialPosition] = useState({ x: 50, y: 50 }); // Drag position
+  const [isDraggingSerial, setIsDraggingSerial] = useState(false); // Dragging state
 
 
   const activeStampRef = useRef(null);
   const pdfWrapperRef = useRef(null);
 
+  const handleSerialGenerated = (serial) => {
+    setSerialNumber(serial);
+  };
+  const handleMouseDown = () => {
+    setIsDraggingSerial(true);
+  };
+
+  const handleRemoveQRCode = () => {
+    setPlacedQRCode(null);
+    alert("QR Code removed from the document.");
+};
+  
+
   const handleQRGenerated = (qrCodeUrl) => {
     setGeneratedQRCode(qrCodeUrl); // Store the generated QR, but do not display it yet
-};
+    };
+
+
 
 
 const handleMouseMove = (e) => {
@@ -73,6 +89,12 @@ const handleMouseMove = (e) => {
                     : stamp
             )
         );
+    } else if (isDraggingSerial) {
+        // Update the position of the serial number
+        const x = Math.max(0, Math.min(pageWidth, e.clientX - rect.left));
+        const y = Math.max(0, Math.min(pageHeight, e.clientY - rect.top));
+
+        setSerialPosition({ x, y });
     }
 };
 
@@ -80,6 +102,7 @@ const handleMouseUp = () => {
     setIsDraggingQRCode(false);
     setIsDraggingStamp(false);
     setActiveStamp(null);
+    setIsDraggingSerial(false);
 };
 
 
@@ -145,7 +168,7 @@ const handleRenderSuccess = () => {
         document.removeEventListener("mousemove", handleDocumentMouseMove);
         document.removeEventListener("mouseup", handleDocumentMouseUp);
     };
-}, [isDraggingStamp, isDraggingQRCode]);
+}, [isDraggingStamp, isDraggingQRCode, isDraggingSerial]);
 
 
 
@@ -394,6 +417,18 @@ const handleSaveStampedDocument = async () => {
             console.warn("No QR Code found. The document will be saved without a QR Code.");
         }
 
+        // Embed the serial number (if visible)
+        if (isSerialVisible && serialNumber) {
+            page.drawText(serialNumber, {
+                x: Math.max(5, Math.min(serialPosition.x, pageWidth - 50)), // Ensure the serial fits within the page bounds
+                y: Math.max(pageHeight - serialPosition.y - 20, 20), // Adjust position relative to the page height
+                size: 10,
+            });
+        
+            console.log("Serial number successfully embedded in the saved document.");
+        }
+        
+
         // Save the updated PDF
         const pdfBytes = await pdfDoc.save();
         const stampedFile = new File([pdfBytes], "stamped-document.pdf", { type: "application/pdf" });
@@ -467,13 +502,9 @@ const handleDownloadStampedDocument = async (documentId = "document") => {
                 const qrBytes = await qrBlob.arrayBuffer();
                 const qrImage = await pdfDoc.embedPng(qrBytes); // Embed PNG instead of SVG
 
-                //  Ensure the QR Code is within PDF bounds
-                let qrX = placedQRCode.x;
-                let qrY = placedQRCode.y;
-
-                // Ensure QR Code does not exceed PDF boundaries
-                qrX = Math.max(0, Math.min(qrX, pageWidth - placedQRCode.width));
-                qrY = Math.max(0, Math.min(qrY, pageHeight - placedQRCode.height));
+                // Ensure the QR Code is within PDF bounds
+                let qrX = Math.max(0, Math.min(placedQRCode.x, pageWidth - placedQRCode.width));
+                let qrY = Math.max(0, Math.min(placedQRCode.y, pageHeight - placedQRCode.height));
 
                 // Draw the QR code in the PDF
                 page.drawImage(qrImage, {
@@ -494,16 +525,28 @@ const handleDownloadStampedDocument = async (documentId = "document") => {
             return;
         }
 
+        // Embed the serial number (if visible)
+        if (isSerialVisible && serialNumber) {
+            page.drawText(serialNumber, {
+                x: Math.max(5, Math.min(serialPosition.x, pageWidth - 50)), // Ensure the serial fits within the page bounds
+                y: Math.max(pageHeight - serialPosition.y - 20, 20), // Adjust position relative to the page height
+                size: 10,
+            });
+
+            console.log("Serial number successfully embedded in the document.");
+        }
+
         // Save and download the updated PDF
         const pdfBytes = await pdfDoc.save();
         saveAs(new Blob([pdfBytes], { type: "application/pdf" }), `stamped_document_${documentId}.pdf`);
 
-        alert("Download started: The stamped document with the QR Code is ready.");
+        alert("Download started: The stamped document with the QR Code and Serial Number is ready.");
     } catch (error) {
         console.error("Failed to download stamped document:", error);
         alert(error.message || "Failed to download the stamped document. Please try again.");
     }
 };
+
    
 
 
@@ -531,6 +574,30 @@ const handleDownloadStampedDocument = async (documentId = "document") => {
             width={Math.min(window.innerWidth * 0.8, 800)}
             />
     </Document>
+
+    {/* Serial Number Display */}
+    {isSerialVisible && serialNumber && (
+        <div
+          className="serial-number"
+          style={{
+            position: "absolute",
+            top: `${serialPosition.y}px`,
+            left: `${serialPosition.x}px`,
+            backgroundColor: "white",
+            padding: "5px",
+            border: "1px solid black",
+            cursor: isDraggingSerial ? "grabbing" : "grab",
+          }}
+          onMouseDown={handleMouseDown}
+        >
+          {serialNumber}
+        </div>
+      )}
+
+      {/* SerialNumber Component */}
+      <SerialNumber documentId={documentId} onSerialGenerated={handleSerialGenerated} />
+
+
     {/* QR Code and Stamps */}
     {placedQRCode && (
     <div
@@ -675,15 +742,30 @@ const handleDownloadStampedDocument = async (documentId = "document") => {
         {showStamps ? "Hide Stamps" : "Apply Stamps"}
     </button>
     <button onClick={handleApplyQRCodeToPDF}>Apply QR Code </button>
+    <button onClick={handleRemoveQRCode} disabled={!placedQRCode}>
+                Remove QR Code
+            </button>
     <button>
         <Link to="/qrcode" style={{ textDecoration: "none", color: "inherit" }}>
             View QR Code
         </Link>
     </button>
-    <button onClick={handleSaveStampedDocument}>Save Stamped Document</button>
-    <button onClick={handleDownloadStampedDocument}>Download Stamped Document</button>
+    <button onClick={handleSaveStampedDocument}>Save Final Document</button>
+    <button onClick={handleDownloadStampedDocument}>Download Final Document</button>
     
-</div>
+    </div>
+
+    <div className="toggle-visibility">
+        <label>
+          <input
+            type="checkbox"
+            checked={isSerialVisible}
+            onChange={(e) => setIsSerialVisible(e.target.checked)}
+          />
+          {isSerialVisible ? "Hide Serial Number" : "Show Serial Number"}
+        </label>
+      </div>
+
 
     
 
