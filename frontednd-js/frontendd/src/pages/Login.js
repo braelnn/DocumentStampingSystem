@@ -30,7 +30,7 @@ const Login = () => {
         console.log("Refresh Token Saved:", localStorage.getItem("refreshToken"));
 
         // Redirect to QR code generation
-        navigate("/qrcode");
+        navigate("/stamps");
       }
     } catch (err) {
       setError(err.error || "Login failed. Please try again.");
