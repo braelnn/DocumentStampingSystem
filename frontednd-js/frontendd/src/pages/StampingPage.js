@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 import Header from '../components/Header';
 import {
   getStamps,
@@ -15,6 +18,10 @@ import {
   deleteStampedDocument,
   downloadStampedDocument, fetchStampedDocumentById,
 } from "../services/documentsService";
+
+import { sendOTPForDocumentVerification, verifyOTPForDocument } from "../services/authService";
+
+
 import StampCustomizer from "../components/StampDetails/StampCustomizer";
 import StampList from "../components/StampDetails/StampList";
 import StampPreview from "../components/StampDetails/StampPreview";
@@ -31,6 +38,10 @@ const StampingPage = () => {
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [currentStamp, setCurrentStamp] = useState(null);
   const [showStampList, setShowStampList] = useState(false);
+
+  const [otp, setOtp] = useState("");
+  const [isVerifying, setIsVerifying] = useState(false);
+  const navigate = useNavigate();
 
   // Utility function to construct file URLs safely
   const getFileUrl = (filePath) => {
@@ -139,41 +150,6 @@ const StampingPage = () => {
   
   
 
-  // Select a stamp
-  // const handleStampSelect = (stamp) => {
-  //   setCurrentStamp(stamp);
-  //   setShowStampList(false);
-  // };
-
-  // Save the stamped document
-  // const handleSaveStampedDocument = async () => {
-  //   if (!selectedDocument || !currentStamp) {
-  //     alert("Please select a document and stamp before saving.");
-  //     return;
-  //   }
-  
-  //   try {
-  //     const stampedDocument = await stampDocument(selectedDocument.id, {
-  //       id: currentStamp.id,
-  //       preview: currentStamp.preview,
-  //       name: currentStamp.name,
-  //     });
-  
-  //     setStampedDocuments((prevDocs) => [...prevDocs, stampedDocument]); // Ensure `stampedDocument.file` is included
-  //     setUnstampedDocuments((prevDocs) =>
-  //       prevDocs.filter((doc) => doc.id !== selectedDocument.id)
-  //     );
-  
-  //     setSelectedDocument(null);
-  //     setCurrentStamp(null);
-  
-  //     alert("Stamped document saved successfully!");
-  //   } catch (error) {
-  //     console.error("Error saving stamped document:", error);
-  //     alert("Failed to save stamped document.");
-  //   }
-  // };
-
   const handleDownloadStampedDocument = async (documentId) => {
     try {
       await downloadStampedDocument(documentId); // Call the service function to download the document
@@ -210,9 +186,54 @@ const StampingPage = () => {
       setStampedDocuments((prevDocs) => [...prevDocs, updatedDocument]);
     }
   };
+
+  const handleSendOTP = async () => {
+    console.log("Attempting to send OTP...");
+
+    try {
+        const response = await sendOTPForDocumentVerification(); // No need to pass a token
+
+        console.log("OTP Response:", response);
+
+        if (response.success) {
+            alert("To continue to Verification, enter the OTP sent to your email.");
+            setIsVerifying(true);
+        } else {
+            alert(response.message || "Failed to send OTP. Try again.");
+        }
+    } catch (error) {
+        console.error("Error sending OTP:", error.response?.data || error.message);
+        alert(`Error sending OTP: ${error.response?.data?.detail || "Please try again."}`);
+    }
+};
+
+
+
+const handleVerifyOTP = async () => {
+  console.log("Verifying OTP...");
   
-  
-  
+  if (!otp) {
+      alert("Please enter an OTP.");
+      return;
+  }
+
+  try {
+      const response = await verifyOTPForDocument(otp);
+      
+      console.log("OTP Verification Response:", response);
+
+      if (response.success) {
+          alert("OTP Verified! Redirecting...");
+          navigate("/verify-document");
+      } else {
+          alert(response.message || "Invalid OTP. Try again.");
+      }
+  } catch (error) {
+      console.error("Error verifying OTP:", error.response?.data || error.message);
+      alert("Error verifying OTP. Please try again.");
+  }
+};
+
   
   
 
@@ -269,6 +290,18 @@ const StampingPage = () => {
                 onDelete={handleDeleteStampedDocument}
                 onDownload={handleDownloadStampedDocument}
               />
+
+            <div>
+              <button onClick={handleSendOTP}>Verify Document</button>
+              {isVerifying && (                    
+                <div className="otp-popup">                      
+                <p>Enter OTP:</p>                      
+                <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} />                      
+                <button onClick={handleVerifyOTP}>Submit</button>                    
+                </div>                  
+              )}                
+            </div>
+              
             </section>
           </main>
         </div>

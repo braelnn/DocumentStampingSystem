@@ -753,6 +753,7 @@ const handleDownloadStampedDocument = async (documentId = "document") => {
     <button onClick={handleSaveStampedDocument}>Save Final Document</button>
     <button onClick={handleDownloadStampedDocument}>Download Final Document</button>
     
+    
     </div>
 
     <div className="toggle-visibility">

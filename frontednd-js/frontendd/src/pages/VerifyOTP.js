@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { verifyOTP } from "../services/authService";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const VerifyOTP = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +21,8 @@ const VerifyOTP = () => {
   };
 
   return (
+    <div className="OTP">
+      <Header />
     <div className="verify-otp-container">
       <h2>Email Verification</h2>
       <form onSubmit={handleVerify}>
@@ -40,6 +43,7 @@ const VerifyOTP = () => {
         {error && <div className="error-message">{error}</div>}
         <button type="submit">Verify OTP</button>
       </form>
+    </div>
     </div>
   );
 };

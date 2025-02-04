@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'rest_framework_simplejwt',
+    "rest_framework.authtoken",
+
     'corsheaders',  # Add this for CORS support
 ]
 
@@ -50,6 +52,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in the database
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Add this middleware at the top
@@ -139,6 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CORS Settings
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins for development
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Frontend

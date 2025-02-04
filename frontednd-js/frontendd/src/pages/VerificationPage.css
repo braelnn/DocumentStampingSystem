@@ -1,0 +1,79 @@
+/* General Container */
+.verification-container {
+    width: 60%;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  /* Upload Section */
+  .upload-section {
+    border: 2px dashed #007bff;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-section:hover {
+    background-color: #e8f0ff;
+  }
+  
+  /* Preview Image */
+  .preview-image {
+    width: 250px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Verification Result */
+  .verification-result {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: left;
+  }
+  
+  /* Buttons */
+  .verify-button,
+  .back-button {
+    padding: 10px 15px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .verify-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .verify-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .back-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .back-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Back Link */
+  .back-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  

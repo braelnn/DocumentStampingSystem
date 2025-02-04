@@ -13,6 +13,9 @@ import qrcode.image.svg
 from io import BytesIO
 import base64
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+
+
 
 
 
@@ -30,6 +33,8 @@ class LoginView(APIView):
 
             # Check if user exists and validate the password
             if user and user.check_password(password):
+                request.session['email'] = email  # Store email in session
+
                 # Handle Company Users: Send OTP during login
                 if user.account_type == 'Company':
                     otp_code = str(random.randint(100000, 999999))  # Generate a new OTP
@@ -149,14 +154,7 @@ class VerifyOTPView(APIView):
         except CustomUser.DoesNotExist:
             return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-import qrcode
-import qrcode.image.svg
-from io import BytesIO
-import base64
+
 
 class QRCodeView(APIView):
     permission_classes = [IsAuthenticated]  # Ensure user is authenticated
@@ -217,3 +215,50 @@ class QRCodeView(APIView):
                 {"error": "An unexpected error occurred while generating the QR code."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+class VerifyOTPDocView(APIView):
+    def post(self, request):
+        email = request.session.get('email')  # Retrieve email from session
+
+        if not email:
+            return Response({'error': 'User email not found in session'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        try:
+            user = CustomUser.objects.get(email=email)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        otp_code = str(random.randint(100000, 999999))
+        user.otp_code = otp_code
+        user.save()
+
+        send_mail(
+            subject="Your OTP for Document Verification",
+            message=f"Your OTP for document verification is: {otp_code}",
+            from_email="blessingbraelly@gmail.com",
+            recipient_list=[email],
+            fail_silently=False,
+        )
+
+        return Response({'success': True, 'message': 'OTP sent to email'}, status=status.HTTP_200_OK)
+
+
+class VerifyOTPDocVerifyView(APIView):
+    def post(self, request):
+        email = request.session.get('email')  # Retrieve email from session
+        otp_code = request.data.get('otp')
+
+        if not email:
+            return Response({'error': 'User email not found in session'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        try:
+            user = CustomUser.objects.get(email=email)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        if user.otp_code == otp_code:
+            user.otp_code = None
+            user.save()
+            return Response({'success': True, 'message': 'OTP verified'}, status=status.HTTP_200_OK)
+
+        return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)

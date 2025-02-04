@@ -144,3 +144,75 @@
     text-align: center;
   }
   
+  /* Style for the main Verify Document button */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Centered popup modal */
+.otp-popup {
+  position: fixed;
+  left: 15%;
+  bottom: 5%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 18px;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Dark background overlay */
+.otp-popup::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* Style for the input field */
+.otp-popup input {
+  width: 80%;
+  padding: 8px;
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Style for the Submit button */
+.otp-popup button {
+  background-color: #a76128;
+  color: white;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.otp-popup button:hover {
+  background-color: #218838;
+}
