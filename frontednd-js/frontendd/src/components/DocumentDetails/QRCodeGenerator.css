@@ -5,7 +5,7 @@
     justify-content: center;
     gap: 10px;
     padding: 15px;
-    background: #f9f9f9;
+    background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -16,7 +16,7 @@
 }
 
 .qr-code-generator button {
-    background-color: #007bff;
+    background-color: #0077B5;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -27,13 +27,13 @@
 }
 
 .qr-code-generator button:hover {
-    background-color: #0056b3;
+    background-color: #0077B5;
 }
 
 .qr-code-generator img {
     max-width: 150px;
     height: auto;
-    border: 2px solid #007bff;
+    border: 2px solid #0077B5;
     border-radius: 5px;
     padding: 5px;
     background: white;

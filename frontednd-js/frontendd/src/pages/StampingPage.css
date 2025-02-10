@@ -11,7 +11,7 @@
     font-size: 40px;
     text-align: center;
     font-weight: 900;
-    color: #72be92;
+    color: #0077B5;
   }
   
   .stamping-page-content {
@@ -23,8 +23,8 @@
   .sidebar {
     flex: 1;
     width: 400px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border: 1px solid #b6b4b4;
     padding: 20px;
     border-radius: 5px;
   }
@@ -33,7 +33,7 @@
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
-    color: #72be92;
+    color: #0077B5;
     font-weight: 800;
   }
   
@@ -47,24 +47,24 @@
   
   .main-content section {
     margin-bottom: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #8f8f8f;
     border-radius: 5px;
     padding: 15px;
-    background-color: #fdfdfd;
+    background-color: #ffffff;
   }
   
   .main-content h2 {
     margin-top: 0;
     text-align: center;
     font-size: 18px;
-    color: #72be92;
+    color: #0077B5;
     font-weight: 800;
   }
   
   button {
     padding: 8px 16px;
     margin: 10px 0;
-    background-color: #72be92;
+    background-color: #0077B5;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -72,7 +72,7 @@
   }
   
   button:hover {
-    background-color: #3fec0a;
+    background-color: #0077B5;
   }
   
   table {
@@ -146,7 +146,7 @@
   
   /* Style for the main Verify Document button */
 button {
-  background-color: #007bff;
+  background-color: #0077B5;
   color: white;
   padding: 10px 15px;
   font-size: 16px;
@@ -157,62 +157,105 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0077B5;
 }
 
-/* Centered popup modal */
+/* OTP Popup Styling */
 .otp-popup {
   position: fixed;
-  left: 15%;
-  bottom: 5%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 18px;
+  bottom: 150px;  /* Positions it at the bottom */
+  left: 100px;  /* Positions it on the left side */
+  background-color: white;
+  border: 2px solid #0077B5; /* Border in the theme color */
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px; /* Small card size */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   text-align: center;
-  z-index: 1000;
 }
 
-/* Dark background overlay */
-.otp-popup::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: -1;
-}
-
-/* Style for the input field */
-.otp-popup input {
-  width: 80%;
-  padding: 8px;
-  margin-top: 10px;
+/* OTP Text */
+.otp-popup p {
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  text-align: center;
-  border: 1px solid #ccc;
+  font-weight: bold;
+  color: #0077B5;
+  margin-bottom: 10px;
+}
+
+/* OTP Input Field */
+.otp-popup input {
+  width: 100%;
+  padding: 8px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  border: 1px solid #0077B5;
   border-radius: 5px;
+  text-align: center;
   outline: none;
 }
 
-/* Style for the Submit button */
+/* OTP Submit Button */
 .otp-popup button {
-  background-color: #a76128;
-  color: white;
+  width: 100%;
   padding: 10px;
-  margin-top: 15px;
-  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #0077B5;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
 .otp-popup button:hover {
-  background-color: #218838;
+  background-color: #0077B5;
 }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  background: rgb(218, 42, 42);
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 50px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+.modal-content h3 {
+  font-family: 'Roboto', sans-serif;
+  color: #0077B5;
+}
+
+.modal input {
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal button {
+  background-color: #0077B5;
+  color: white;
+  font-family: Arial, sans-serif;
+  border: none;
+  padding: 8px 12px;
+  margin: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal button:hover {
+  background-color: #0077B5;
+}
+

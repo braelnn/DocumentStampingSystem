@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { verifyOTP } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import "./VerifyOTP.css";
 
 const VerifyOTP = () => {
   const [email, setEmail] = useState("");

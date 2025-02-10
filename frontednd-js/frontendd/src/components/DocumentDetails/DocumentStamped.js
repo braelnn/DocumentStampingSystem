@@ -1,7 +1,7 @@
 import React from "react";
 import "./DocumentStamped.css";
 
-const DocumentStamped = ({ stampedDocuments, onDelete, onDownload }) => (
+const DocumentStamped = ({ stampedDocuments, onDelete, onDownload, onShare }) => (
   <div className="document-stamped">
     <table>
       <thead>
@@ -20,6 +20,8 @@ const DocumentStamped = ({ stampedDocuments, onDelete, onDownload }) => (
             <td>
               <button onClick={() => onDelete(doc.id)}>Delete</button>
               <button onClick={() => onDownload(doc.id)}>Download</button>
+              <button onClick={() => onShare(doc.id)}>Share</button>
+
 
             </td>
           </tr>

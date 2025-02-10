@@ -16,7 +16,9 @@ import {
   deleteDocument,
   stampDocument,
   deleteStampedDocument,
-  downloadStampedDocument, fetchStampedDocumentById,
+  downloadStampedDocument, 
+  fetchStampedDocumentById,
+  shareDocument,
 } from "../services/documentsService";
 
 import { sendOTPForDocumentVerification, verifyOTPForDocument } from "../services/authService";
@@ -38,10 +40,13 @@ const StampingPage = () => {
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [currentStamp, setCurrentStamp] = useState(null);
   const [showStampList, setShowStampList] = useState(false);
-
   const [otp, setOtp] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
   const navigate = useNavigate();
+  const [recipientEmail, setRecipientEmail] = useState("");
+  const [selectedDocumentId, setSelectedDocumentId] = useState(null);
+
+
 
   // Utility function to construct file URLs safely
   const getFileUrl = (filePath) => {
@@ -209,33 +214,57 @@ const StampingPage = () => {
 
 
 
-const handleVerifyOTP = async () => {
-  console.log("Verifying OTP...");
+  const handleVerifyOTP = async () => {
+    console.log("Verifying OTP...");
+    
+    if (!otp) {
+        alert("Please enter an OTP.");
+        return;
+    }
+
+    try {
+        const response = await verifyOTPForDocument(otp);
+        
+        console.log("OTP Verification Response:", response);
+
+        if (response.success) {
+            alert("OTP Verified! Redirecting...");
+            navigate("/verify-document");
+        } else {
+            alert(response.message || "Invalid OTP. Try again.");
+        }
+    } catch (error) {
+        console.error("Error verifying OTP:", error.response?.data || error.message);
+        alert("Error verifying OTP. Please try again.");
+    }
+  };
+
+  const handleShareClick = async (docId) => {
+    console.log("Share button clicked for Document ID:", docId);
   
-  if (!otp) {
-      alert("Please enter an OTP.");
+    // Get email from user input
+    const email = prompt("Enter recipient's email address:");
+  
+    if (!email) {
+      alert("Email is required to share the document.");
       return;
-  }
-
-  try {
-      const response = await verifyOTPForDocument(otp);
+    }
+  
+    try {
+      const response = await shareDocument(docId, email);
       
-      console.log("OTP Verification Response:", response);
-
-      if (response.success) {
-          alert("OTP Verified! Redirecting...");
-          navigate("/verify-document");
-      } else {
-          alert(response.message || "Invalid OTP. Try again.");
+      if (response.error) {
+        throw new Error(response.error);
       }
-  } catch (error) {
-      console.error("Error verifying OTP:", error.response?.data || error.message);
-      alert("Error verifying OTP. Please try again.");
-  }
-};
-
   
-  
+      console.log("Server Response:", response);
+      alert(`🎉 Document sent successfully to ${email}!`);
+    } catch (error) {
+      console.error("Error sharing document:", error.message);
+      alert(`Failed to send document: ${error.message}`);
+    }
+  }; 
+   
 
   return (
     <div className="this page">
@@ -289,9 +318,12 @@ const handleVerifyOTP = async () => {
                 stampedDocuments={stampedDocuments}
                 onDelete={handleDeleteStampedDocument}
                 onDownload={handleDownloadStampedDocument}
+                onShare={handleShareClick}
               />
 
-            <div>
+             
+
+            <div className="VerifyDoc">
               <button onClick={handleSendOTP}>Verify Document</button>
               {isVerifying && (                    
                 <div className="otp-popup">                      
@@ -300,12 +332,14 @@ const handleVerifyOTP = async () => {
                 <button onClick={handleVerifyOTP}>Submit</button>                    
                 </div>                  
               )}                
-            </div>
+            </div>      
               
             </section>
           </main>
-        </div>
+        </div>       
       </div>
+      
+
     </div>
   );
 };

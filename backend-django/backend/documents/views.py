@@ -1,4 +1,4 @@
-import os  # Import 'os' to fix the error
+import os  
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
@@ -10,6 +10,11 @@ import mimetypes
 from django.core.files.base import ContentFile
 from django.http import FileResponse
 import logging
+import traceback
+from django.core.mail import EmailMessage
+from django.conf import settings
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -108,3 +113,48 @@ class DocumentViewSet(viewsets.ModelViewSet):
         document.serial_number = f"SN-{uuid.uuid4().hex[:12].upper()}"
         document.save()
         return Response({"serial_number": document.serial_number}, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=["POST"], url_path="share")
+    def share_document(self, request, pk=None):
+        """
+        Share the stamped document via email.
+        """
+        document = get_object_or_404(Document, pk=pk)
+        recipient_email = request.data.get("email")
+
+        if not recipient_email:
+            return Response({"error": "Recipient email is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Ensure the document is a stamped PDF
+        if not document.file.name.endswith(".pdf"):
+            return Response({"error": "Only stamped PDF documents can be shared."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Ensure file exists before attempting to attach it
+        if not document.file or not os.path.exists(document.file.path):
+            error_msg = f"Document file not found at: {document.file.path}"
+            logger.error(error_msg)  # Log error
+            return Response({"error": error_msg}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            email_subject = "Shared Final Document"
+            email_body = "The attachd document below is either stamped, has a QrCode or Serial Number. Chec it out!!!"
+
+            email = EmailMessage(
+                email_subject,
+                email_body,
+                settings.DEFAULT_FROM_EMAIL,
+                [recipient_email],
+            )
+
+            logger.info(f"Attaching file: {document.file.path}")  # Debugging log
+
+            email.attach_file(document.file.path)
+            email.send()
+
+            logger.info("Email sent successfully!")
+            return Response({"message": "Document sent successfully."}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            error_message = f"Failed to send email: {str(e)}\n{traceback.format_exc()}"
+            logger.error(error_message)  # Log full error
+            return Response({"error": error_message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

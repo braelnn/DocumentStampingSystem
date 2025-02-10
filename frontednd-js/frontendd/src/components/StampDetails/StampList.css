@@ -26,7 +26,7 @@
 }
 
 .stamp-list td a {
-  color: #007bff;
+  color: #0077B5;
   text-decoration: none;
 }
 
@@ -38,7 +38,7 @@
   margin: 0 5px;
   padding: 5px 20px;
   border: none;
-  background-color: #72be92;
+  background-color: #0077B5;
   color: white;
   border-radius: 4px;
   cursor: pointer;
@@ -47,5 +47,5 @@
 }
 
 .stamp-list button:hover {
-  background-color: #3fec0a;
+  background-color: #170cb6;
 }

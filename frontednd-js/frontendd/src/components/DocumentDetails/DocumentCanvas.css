@@ -38,7 +38,7 @@
   font-size: 16px;
   margin-top: 15px;
   color: black;
-  background-color: rgb(9, 140, 248);
+  background-color: #0077B5;
   border-radius: rgb(212, 88, 88);
   margin-bottom: 15px;
   
@@ -138,7 +138,7 @@
   margin-right: 8px; /* Space between checkbox and label text */
   width: 16px;
   height: 16px;
-  accent-color: #007bff; /* Custom accent color for the checkbox */
+  accent-color: #0077B5; /* Custom accent color for the checkbox */
 }
 
 .toggle-visibility input[type="checkbox"]:hover {
@@ -146,7 +146,7 @@
 }
 
 .toggle-visibility label:hover {
-  color: #007bff; /* Change label color on hover */
+  color: #0077B5; /* Change label color on hover */
   transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
 

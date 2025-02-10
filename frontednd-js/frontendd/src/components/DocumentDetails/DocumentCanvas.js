@@ -120,8 +120,8 @@ const handleApplyQRCodeToPDF = async () => {
         imgSrc: generatedQRCode, // Use the stored QR code
         x: rect.width - 130, 
         y: 60, 
-        width: 120, 
-        height: 120,
+        width: 180, 
+        height: 180,
     });
 
     setIsQrCodeEmbedded(true);

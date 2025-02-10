@@ -144,3 +144,25 @@ export const deleteStampedDocument = async (id) => {
   }
 };
 
+export const shareDocument = async (documentId, recipientEmail) => { 
+  if (!documentId || !recipientEmail) {
+    console.error("Error: Document ID and recipient email are required.");
+    return { error: "Document ID and recipient email are required." };
+  }
+
+  try {
+    console.log(`Sending document ID: ${documentId} to ${recipientEmail}`);
+
+    const response = await axios.post(`${API_URL}${documentId}/share/`, {
+      email: recipientEmail,
+    });
+
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("API Error:", error.response?.data || error.message);
+    
+    return { error: error.response?.data || "Failed to share document." };
+  }
+};
+
