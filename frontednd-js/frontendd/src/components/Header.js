@@ -59,7 +59,8 @@ const Header = () => {
     >
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         <Link to="/" className="logo d-flex align-items-center me-auto">
-          <h1 className="sitename">STAMPING</h1>
+        <h1 className="sitename" style={{ color: "#0077B5" }}>STAMPING</h1>
+
         </Link>
 
         <nav id="navmenu" className={`navmenu ${isMobileMenuOpen ? 'mobile-nav-active' : ''}`}>
@@ -67,6 +68,11 @@ const Header = () => {
             <li>
               <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/stamps" className={location.pathname === '/login' ? 'active' : ''}>
+                Stamps Dashboard
               </Link>
             </li>
             <li>
@@ -94,16 +100,12 @@ const Header = () => {
                 Services
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/dashboard" className={location.pathname === '/login' ? 'active' : ''}>
                 Dashboard
               </Link>
-            </li>
-            <li>
-              <Link to="/stamps" className={location.pathname === '/login' ? 'active' : ''}>
-                Stamps
-              </Link>
-            </li>
+            </li> */}
+            
             
             
           </ul>

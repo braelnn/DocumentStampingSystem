@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { verifyOTP } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./VerifyOTP.css";
 
 const VerifyOTP = () => {
@@ -45,6 +46,7 @@ const VerifyOTP = () => {
         <button type="submit">Verify OTP</button>
       </form>
     </div>
+    <Footer />
     </div>
   );
 };

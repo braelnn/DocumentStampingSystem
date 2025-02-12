@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { registerUser } from '../services/authService';
 import { useNavigate } from "react-router-dom";
 
@@ -141,6 +142,7 @@ const Register = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

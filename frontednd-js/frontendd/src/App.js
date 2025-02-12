@@ -11,6 +11,7 @@ import QRCodeGenerator from './components/DocumentDetails/QRCodeGenerator'
 import SerialNumber from './components/DocumentDetails/SerialNumber'
 import VerificationPage from './pages/VerificationPage';
 import About from './pages/About'
+import Footer from './components/Footer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Route path='/serial' element={<SerialNumber/>}/>
         <Route path="/verify-document" element={<VerificationPage />} />
         <Route path='/about' element={<About/>}/>
+        <Route path='/footer' element={<Footer/>}/>
+
 
 
 

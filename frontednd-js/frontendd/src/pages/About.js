@@ -1,6 +1,7 @@
 import React from "react";
 import "./About.css"; 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const About = () => {
     const sections = [
@@ -50,6 +51,7 @@ const About = () => {
                 </div>
             ))}
             </div>
+            <Footer />
         </div>
       );
     };

@@ -1,180 +1,176 @@
 .stamping-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .stamping-page h1 {
-    margin-bottom: 20px;
-    font-size: 40px;
-    text-align: center;
-    font-weight: 900;
-    color: #0077B5;
-  }
-  
-  .stamping-page-content {
-    display: flex;
-    width: 100%;
-    gap: 20px;
-  }
-  
-  .sidebar {
-    flex: 1;
-    width: 400px;
-    background-color: #ffffff;
-    border: 1px solid #b6b4b4;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .sidebar h2 {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #0077B5;
-    font-weight: 800;
-  }
-  
-  .main-content {
-    flex: 3;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-  }
-  
-  .main-content section {
-    margin-bottom: 20px;
-    border: 1px solid #8f8f8f;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #ffffff;
-  }
-  
-  .main-content h2 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 18px;
-    color: #0077B5;
-    font-weight: 800;
-  }
-  
-  button {
-    padding: 8px 16px;
-    margin: 10px 0;
-    background-color: #0077B5;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0077B5;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  table th,
-  table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  table th {
-    background-color: #f1f1f1;
-  }
-  
-  canvas {
-    border: 1px solid #ccc;
-    margin: 10px auto;
-  }
-  
-  .stamp-list { 
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .stamp-list li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    text-align: center;
-    width: 100px; /* Adjust width as needed */
-    height: 120px; /* Adjust height as needed */
-  }
-  
-  .stamp-list li:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #f0f0f0;
-  }
-  
-  .stamp-list li img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    object-fit: contain; /* Ensures the image fits nicely */
-  }
-  
-  .stamp-list li span {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    word-wrap: break-word;
-    text-align: center;
-  }
-  
-  /* Style for the main Verify Document button */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #F3F6F8; /* Light Gray for subtle separation */
+}
+
+.stamping-page h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif; /* Use Roboto for headings */
+  color: #0077B5; /* Primary LinkedIn Blue */
+}
+
+.stamping-page-content {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.sidebar {
+  flex: 1;
+  width: 400px;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E9EE; /* Light gray for subtle borders */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #434649; /* Secondary Slate Gray */
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-content {
+  flex: 3;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E9EE;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.main-content section {
+  margin-bottom: 20px;
+  border: 1px solid #86888A; /* Cool Gray */
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #FFFFFF;
+}
+
+.main-content h2 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 18px;
+  color: #0077B5;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Button Styles */
 button {
+  padding: 10px 15px;
+  margin: 10px 0;
   background-color: #0077B5;
   color: white;
-  padding: 10px 15px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #0077B5;
+  background-color: #005587; /* Darker LinkedIn Blue */
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+table th, table td {
+  border: 1px solid #E1E9EE;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #F3F6F8;
+  color: #434649;
+}
+
+/* Canvas Styling */
+canvas {
+  border: 1px solid #86888A;
+  margin: 10px auto;
+}
+
+/* Stamp List */
+.stamp-list { 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stamp-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #E1E9EE;
+  border-radius: 8px;
+  background-color: #F9F9F9;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  height: 120px;
+}
+
+.stamp-list li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #F3F6F8;
+}
+
+.stamp-list li img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.stamp-list li span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #434649;
+  word-wrap: break-word;
+  text-align: center;
 }
 
 /* OTP Popup Styling */
 .otp-popup {
   position: fixed;
-  bottom: 150px;  /* Positions it at the bottom */
-  left: 100px;  /* Positions it on the left side */
-  background-color: white;
-  border: 2px solid #0077B5; /* Border in the theme color */
+  bottom: 150px;
+  left: 100px;
+  background-color: #FFFFFF;
+  border: 2px solid #0077B5;
   border-radius: 10px;
   padding: 15px;
-  width: 250px; /* Small card size */
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 250px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-/* OTP Text */
 .otp-popup p {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -183,23 +179,18 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* OTP Input Field */
 .otp-popup input {
   width: 100%;
   padding: 8px;
-  font-family: 'Arial', sans-serif;
   font-size: 14px;
   border: 1px solid #0077B5;
   border-radius: 5px;
   text-align: center;
-  outline: none;
 }
 
-/* OTP Submit Button */
 .otp-popup button {
   width: 100%;
   padding: 10px;
-  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: bold;
   background-color: #0077B5;
@@ -208,25 +199,26 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  transition: 0.3s;
+  transition: background 0.3s;
 }
 
 .otp-popup button:hover {
-  background-color: #0077B5;
+  background-color: #005587;
 }
 
+/* Modal Styling */
 .modal {
   position: fixed;
   top: 50%;
   left: 5%;
   transform: translate(-50%, -50%);
-  background: rgb(218, 42, 42);
+  background: #FFFFFF;
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 50px;
+  width: 300px;
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   z-index: 1000;
 }
 
@@ -239,14 +231,14 @@ button:hover {
   width: 90%;
   padding: 8px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #E1E9EE;
   border-radius: 4px;
 }
 
 .modal button {
   background-color: #0077B5;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   border: none;
   padding: 8px 12px;
   margin: 4px;
@@ -256,6 +248,160 @@ button:hover {
 }
 
 .modal button:hover {
-  background-color: #0077B5;
+  background-color: #005587;
 }
 
+/* Base Styles */
+.stamping-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #F3F6F8;
+}
+
+.stamping-page h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+  color: #0077B5;
+}
+
+/* Flexbox Layout for Content */
+.stamping-page-content {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 1;
+  max-width: 400px;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E9EE;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 18px;
+  color: #434649;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Main Content */
+.main-content {
+  flex: 3;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E9EE;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.main-content section {
+  margin-bottom: 20px;
+  border: 1px solid #86888A;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #FFFFFF;
+}
+
+.main-content h2 {
+  text-align: center;
+  font-size: 18px;
+  color: #0077B5;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stamping-page-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .sidebar {
+      max-width: 90%;
+      width: 100%;
+      padding: 15px;
+  }
+
+  .main-content {
+      width: 90%;
+      padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stamping-page h1 {
+      font-size: 32px;
+  }
+
+  .stamping-page-content {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+  }
+
+  .sidebar, .main-content {
+      width: 100%;
+      max-width: 100%;
+      padding: 15px;
+  }
+
+  button {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 480px) {
+  .stamping-page {
+      padding: 10px;
+  }
+
+  .stamping-page h1 {
+      font-size: 28px;
+  }
+
+  .sidebar h2, .main-content h2 {
+      font-size: 16px;
+  }
+
+  .stamping-page-content {
+      gap: 10px;
+  }
+
+  button {
+      font-size: 14px;
+      padding: 10px;
+      width: 100%;
+  }
+
+  .otp-popup {
+      width: 90%;
+      left: 5%;
+      bottom: 50px;
+  }
+
+  .modal {
+      width: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #005587;
+}

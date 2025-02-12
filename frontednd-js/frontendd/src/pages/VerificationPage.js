@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import jsQR from "jsqr"; // QR code scanner
 import "./VerificationPage.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const VerificationPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -207,6 +208,7 @@ const VerificationPage = () => {
           </Link>
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,95 +1,151 @@
-/* Global styles */
+/* Global Styles */
 .about-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 40px 20px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Card styles */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 50px 20px;
+  background-color: var(--theme2-bg-light);
+}
+
+/* Card Styles */
+.about-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 85%;
+  max-width: 1100px;
+  border-radius: 16px;
+  background: var(--theme2-card-bg);
+  overflow: hidden;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Section */
+.about-image {
+  width: 40%;
+  min-height: 270px;
+  background-size: cover;
+  background-position: center;
+  border-right: 4px solid var(--theme2-primary);
+}
+
+/* Text Section */
+.about-content {
+  width: 60%;
+  padding: 35px;
+  text-align: left;
+}
+
+.about-content h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+  color: var(--theme2-primary-dark);
+  font-weight: bold;
+  font-family: var(--theme2-heading-font);
+}
+
+.about-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--theme2-text-dark);
+  font-family: var(--theme2-body-font);
+}
+
+/* Background Images for Each Card */
+.about-image-1 {
+  background-image: url("../../public/assets/img/course-1.jpg");
+}
+
+.about-image-2 {
+  background-image: url("../../public/assets/img/stamp.jpg");
+}
+
+.about-image-3 {
+  background-image: url("../../public/assets/img/Qrcode.jpg");
+}
+
+.about-image-4 {
+  background-image: url("../../public/assets/img/OTP.jpg");
+}
+
+.about-image-5 {
+  background-image: url("../../public/assets/img/friendly.jpg");
+}
+
+/* Button Styles */
+.about-content .cta-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theme2-btn-text);
+  background: var(--theme2-btn-bg);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.about-content .cta-btn:hover {
+  background: var(--theme2-btn-hover);
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
   .about-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 80%;
-    max-width: 1000px;
-    border-radius: 12px;
-    background: white;
-    overflow: hidden;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .about-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Image section */
-  .about-image {
-    width: 35%;
-    min-height: 250px;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  /* Text section */
-  .about-content {
-    width: 65%;
-    padding: 30px;
-    text-align: left;
-  }
-  
-  .about-content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .about-content p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
-  }
-  
-  /* Background images for each card */
-  .about-image-1 {
-    background-image: url("../../public/assets/img/course-1.jpg");
-  }
-  
-  .about-image-2 {
-    background-image: url("../../public/assets/img/stamp.jpg");
-  }
-  
-  .about-image-3 {
-    background-image: url("../../public/assets/img/Qrcode.jpg");
-  }
-  
-  .about-image-4 {
-    background-image: url("../../public/assets/img/OTP.jpg");
-  }
-  
-  .about-image-5 {
-    background-image: url("../../public/assets/img/friendly.jpg");
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .about-card {
       flex-direction: column;
-      width: 100%;
-    }
-  
-    .about-image {
-      width: 100%;
-      height: 200px;
-    }
-  
-    .about-content {
-      width: 100%;
-      padding: 20px;
-      text-align: center;
-    }
+      width: 90%;
   }
-  
+
+  .about-image {
+      width: 100%;
+      height: 250px;
+      border-right: none;
+      border-bottom: 4px solid var(--theme2-primary);
+  }
+
+  .about-content {
+      width: 100%;
+      padding: 25px;
+      text-align: center;
+  }
+
+  .about-content h2 {
+      font-size: 26px;
+  }
+
+  .about-content p {
+      font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+      padding: 40px 15px;
+  }
+
+  .about-content {
+      padding: 20px;
+  }
+
+  .about-content h2 {
+      font-size: 24px;
+  }
+
+  .about-content p {
+      font-size: 15px;
+  }
+
+  .about-content .cta-btn {
+      padding: 10px 18px;
+      font-size: 14px;
+  }
+}

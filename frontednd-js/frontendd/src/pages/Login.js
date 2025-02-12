@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { login, verifyLoginOTP } from "../services/authService";
 import "./Login.css";
 
@@ -113,6 +114,7 @@ const Login = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

@@ -2,45 +2,10 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import './Home.css'
+import Footer from '../components/Footer';
 
 function Home() {
-  const [counts, setCounts] = useState({
-    students: 0,
-    courses: 0,
-    events: 0,
-    trainers: 0
-  });
-
-  const finalCounts = {
-    students: 1232,
-    courses: 64,
-    events: 42,
-    trainers: 24
-  };
-
-  useEffect(() => {
-    const duration = 1000; // 1 second duration
-    const steps = 20; // Number of steps in the animation
-    const interval = duration / steps;
-
-    const counters = Object.entries(finalCounts).map(([key, value]) => {
-      const stepValue = value / steps;
-      let currentStep = 0;
-
-      return setInterval(() => {
-        if (currentStep < steps) {
-          setCounts(prev => ({
-            ...prev,
-            [key]: Math.round(stepValue * (currentStep + 1))
-          }));
-          currentStep++;
-        }
-      }, interval);
-    });
-
-    // Cleanup intervals
-    return () => counters.forEach(counter => clearInterval(counter));
-  }, []);
+  
   return (
     <div className="home">
        <Header />
@@ -137,35 +102,109 @@ function Home() {
         </div>
       </div>
     </section>
-    <section id="why-us" className="why-us section">
+    <div className="container">
+      <div className="row">
+        {/* Left Box */}
+        <div className="why-box-container">
+          <div className="why-box1">
+            <h3>Why Choose Our Services?</h3>
+            <p>
+              Our services are designed to offer unparalleled efficiency, security, and customization 
+              for your document authentication needs. With a user-friendly interface and cutting-edge 
+              technology, you can seamlessly upload, manage, and stamp documents in real-time. 
+              We prioritize your convenience with features like customizable stamps, advanced document 
+              organization, and robust version control. By leveraging secure systems and dynamic 
+              traceability, we ensure your documents remain authentic and tamper-proof. 
+              Choose our services for reliability, innovation, and an exceptional user experience tailored 
+              to simplify your workflow.
+            </p>
+
+            <div className="text-center">
+              <Link to="/services" className="more-btn">
+                <span>Learn More</span>
+                <span className="chevron-right">›</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     {/* New Containers */}
+     <div className="container">
+        <div className="row">
+          {/* Left Box */}
+          <div className="why-box-container">
+            <div className="why-box1">
+              <h3>QR Code Stamping</h3>
+              <p>
+              The system allows users to generate and place QR codes alongside digital stamps, adding an extra layer of security and authentication to documents. 
+              Each QR code encodes essential metadata, such as document ID, user information, and timestamps, ensuring every stamped document is uniquely identifiable. 
+              By scanning the QR code, recipients can instantly verify the document's authenticity and track its history. This feature is particularly useful for businesses, 
+              legal documents, and official certifications where tamper-proof validation is required. The QR code technology also integrates seamlessly with our document verification system, 
+              enabling real-time checks against stored records. With this approach, we enhance trust, prevent forgery, and streamline digital document authentication across multiple industries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container">
         <div className="row">
           {/* Left Box */}
           <div className="why-box-container">
-            <div className="why-box">
-              <h3>Why Choose Our Services?</h3>
-              <p>Our services are designed to offer unparalleled efficiency, security, and customization 
-                for your document authentication needs. With a user-friendly interface and cutting-edge 
-                technology, you can seamlessly upload, manage, and stamp documents in real-time. 
-                We prioritize your convenience with features like customizable stamps, advanced document 
-                organization, and robust version control. By leveraging secure systems and dynamic 
-                traceability, we ensure your documents remain authentic and tamper-proof. 
-                Choose our services for reliability, 
-                innovation, and an exceptional user experience tailored to simplify your workflow.</p>
-
-              <div className="text-center">
-                <Link to="/services" className="more-btn">
-                  <span>Learn More</span>
-                  <span className="chevron-right">›</span>
-                </Link>
+            <div className="why-box1">
+              <h3>Document Verification</h3>
+              <p>
+              The system enables real-time document verification using built-in scanners and advanced metadata checks to ensure authenticity. By cross-referencing document content, digital stamps,
+              and QR codes, the system detects any alterations or unauthorized modifications. Users can upload a document or scan a printed version, and the system will compare it against stored metadata,
+              including timestamps, serial numbers, and user credentials. This ensures that every document maintains its original integrity. The verification process is essential for legal documents, business contracts, 
+              and official records where authenticity is crucial. Additionally, the system provides instant feedback, alerting users if discrepancies are found. This streamlined approach enhances trust, reduces fraud, and 
+              simplifies compliance with regulatory standards across various industries.
+              </p>
               </div>
-            </div>
           </div>
-
-        
         </div>
       </div>
-    </section>
+
+      <div className="container">
+        <div className="row">
+          {/* Left Box */}
+          <div className="why-box-container">
+            <div className="why-box1">
+              <h3>Secure & Traceable Authentication</h3>
+              <p>
+              The system enhances document security by linking every digital stamp to a unique serial number and a verified email address, ensuring traceability and authenticity. Each time a stamp is applied, the system logs critical details 
+              such as the user’s identity, timestamp, and document metadata, creating an auditable record of every transaction. This prevents unauthorized modifications and helps organizations maintain compliance with regulatory standards. 
+              The serial number allows quick verification, ensuring that documents remain genuine and unaltered over time. Additionally, the system’s tamper-proof logging mechanism provides a secure way to track document history, making it ideal 
+              for contracts, certifications, and legal documents. This robust approach strengthens security, reduces fraud, and instills trust in digital document authentication.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row">
+          {/* Left Box */}
+          <div className="why-box-container">
+            <div className="why-box1">
+              <h3>About Us</h3>
+              <p>
+                We are a dedicated team committed to revolutionizing digital document authentication. 
+                Our platform provides an innovative and secure way to create, manage, and verify 
+                digital stamps, ensuring documents remain authentic and tamper-proof. With advanced 
+                technologies like QR code stamping, real-time verification, and traceable serial 
+                numbers, we help businesses, organizations, and individuals protect their sensitive 
+                records. Our mission is to simplify document management while maintaining the highest 
+                security standards. Whether for legal, business, or personal use, our system ensures 
+                reliability, transparency, and compliance. Join us in redefining the future of secure 
+                digital documentation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <Footer />    
+
     </div>
   );
   
