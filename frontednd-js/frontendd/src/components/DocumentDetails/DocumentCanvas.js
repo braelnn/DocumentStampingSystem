@@ -737,21 +737,21 @@ const handleDownloadStampedDocument = async (documentId = "document") => {
 
 
 
-    <div className="actions">
-    <button onClick={() => setShowStamps(!showStamps)}>
-        {showStamps ? "Hide Stamps" : "Apply Stamps"}
-    </button>
-    <button onClick={handleApplyQRCodeToPDF}>Apply QR Code </button>
-    <button onClick={handleRemoveQRCode} disabled={!placedQRCode}>
-                Remove QR Code
-            </button>
-    <button>
-        <Link to="/qrcode" style={{ textDecoration: "none", color: "inherit" }}>
-            View QR Code
-        </Link>
-    </button>
-    <button onClick={handleSaveStampedDocument}>Save Final Document</button>
-    <button onClick={handleDownloadStampedDocument}>Download Final Document</button>
+    <div className="actions"> 
+        <button onClick={() => setShowStamps(!showStamps)}>
+            {showStamps ? "Hide Stamps" : "Apply Stamps"}
+        </button>
+        <button onClick={handleApplyQRCodeToPDF}>Apply QR Code </button>
+        <button onClick={handleRemoveQRCode} disabled={!placedQRCode}>
+                    Remove QR Code
+                </button>
+        <button>
+            <Link to="/qrcode" style={{ textDecoration: "none", color: "inherit" }}>
+                View QR Code
+            </Link>
+        </button>
+        <button onClick={handleSaveStampedDocument}>Save Final Document</button>
+        <button onClick={handleDownloadStampedDocument}>Download Final Document</button>
     
     
     </div>

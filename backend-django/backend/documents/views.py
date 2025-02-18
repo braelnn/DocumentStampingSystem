@@ -158,3 +158,28 @@ class DocumentViewSet(viewsets.ModelViewSet):
             error_message = f"Failed to send email: {str(e)}\n{traceback.format_exc()}"
             logger.error(error_message)  # Log full error
             return Response({"error": error_message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    @action(detail=False, methods=["GET"], url_path="all")
+    def get_all_documents(self, request):
+        """
+        Fetch all documents and categorize them as stamped or unstamped.
+        """
+        try:
+            stamped_docs = Document.objects.filter(stamped=True)
+            unstamped_docs = Document.objects.filter(stamped=False)
+
+            stamped_serializer = DocumentSerializer(stamped_docs, many=True)
+            unstamped_serializer = DocumentSerializer(unstamped_docs, many=True)
+
+            return Response(
+                {
+                    "stamped_documents": stamped_serializer.data,
+                    "unstamped_documents": unstamped_serializer.data,
+                },
+                status=status.HTTP_200_OK,
+            )
+        except Exception as e:
+            return Response(
+                {"error": f"Error retrieving documents: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )

@@ -3,9 +3,19 @@
   border: 1px solid #ffffff;
   border-radius: 12px;
   background-color: #ffffff;
+  width: 600px;
+  margin-left: 20%;
+}s
+
+.document-upload input{
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background-color: #ffffff;
+  margin-left: 800px;
+  box-shadow: #000000;
 }
 
-
+ 
 
 .document-upload input[type="file"] {
   margin-bottom: 16px;
@@ -30,10 +40,11 @@
 }
 
 textarea {
-  width: 100%;
+  width: 82%;
   height: 80px;
   margin-top: 16px;
   padding: 8px;
+  margin-left: 25px;
   border: 1px solid #cecece;
   border-radius: 4px;
   font-family: Arial, sans-serif;
@@ -46,8 +57,10 @@ textarea {
   background-color: #0077B5;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 18px;
+  
 }
 
 

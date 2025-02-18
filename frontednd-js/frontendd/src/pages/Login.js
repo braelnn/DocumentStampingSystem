@@ -17,26 +17,31 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const data = await login(email, password); // Call the login API
-      if (data.requires_otp) {
-        setRequiresOtp(true); // If OTP is required, show OTP input
-        alert("OTP has been sent to your email.");
-      } else {
-        // Save tokens to localStorage
-        localStorage.setItem("authToken", data.access);
-        localStorage.setItem("refreshToken", data.refresh);
+        const data = await login(email, password); // Call the login API
 
-        // Debug: Ensure tokens are stored
-        console.log("Auth Token Saved:", localStorage.getItem("authToken"));
-        console.log("Refresh Token Saved:", localStorage.getItem("refreshToken"));
+        if (data.requires_otp) {
+            setRequiresOtp(true); // If OTP is required, show OTP input
+            alert("OTP has been sent to your email.");
+        } else {
+            // Save tokens to localStorage
+            localStorage.setItem("authToken", data.access);
+            localStorage.setItem("refreshToken", data.refresh);
 
-        // Redirect to QR code generation
-        navigate("/stamps");
-      }
+            // Debug: Ensure tokens are stored
+            console.log("Auth Token Saved:", localStorage.getItem("authToken"));
+            console.log("Refresh Token Saved:", localStorage.getItem("refreshToken"));
+
+            // Redirect based on user role
+            if (data.is_admin) {
+                navigate("/adminDashboard"); // Redirect admin to admin dashboard
+            } else {
+                navigate("/stamps"); // Redirect normal users
+            }
+        }
     } catch (err) {
-      setError(err.error || "Login failed. Please try again.");
+        setError(err.error || "Login failed. Please try again.");
     }
-  };
+};
 
   const handleVerifyOtp = async (e) => {
     e.preventDefault();

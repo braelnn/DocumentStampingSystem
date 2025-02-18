@@ -1,0 +1,76 @@
+/* Service Page Styling */
+.service-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .service-title {
+    font-size: 4rem;
+    font-family: "Roboto", sans-serif;
+    color: #0077B5;
+    margin-bottom: 30px;
+    font-weight: 900;
+  }
+  
+  /* Section Styling */
+  .service-section {
+    margin-bottom: 50px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-family: "Roboto", sans-serif;
+    color: #434649;
+  }
+  
+  /* Service Grid Layout */
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Service Card Styling */
+  .service-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .service-icon {
+    font-size: 40px;
+    color: #0077B5;
+    margin-bottom: 10px;
+  }
+  
+  .service-heading {
+    font-size: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    color: #434649;
+    margin-bottom: 10px;
+  }
+  
+  .service-description {
+    font-size: 1.2rem;
+    font-family: "Arial", sans-serif;
+    color: #86888A;
+    line-height: 1.5;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .service-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  

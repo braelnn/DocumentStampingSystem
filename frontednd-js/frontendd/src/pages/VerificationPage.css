@@ -61,6 +61,7 @@
 .verify-button {
   background-color: #0077B5; /* Primary LinkedIn Blue */
   color: white;
+  width: 30%;
 }
 
 .verify-button:hover {
@@ -71,6 +72,7 @@
 .back-button {
   background-color: #434649; /* Secondary Slate Gray */
   color: white;
+  width: 30%;
 }
 
 .back-button:hover {

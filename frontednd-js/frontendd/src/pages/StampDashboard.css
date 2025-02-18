@@ -1,0 +1,413 @@
+/* General Layout */
+.stamper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
+/* ✅ Sidebar Scrolls with Page */
+.sidebar {
+  width: 250px;
+  background-color: #434649;
+  color: white;
+  transition: width 0.3s ease-in-out;
+  position: fixed;
+  left: 0;
+  margin-top: 13vh;
+  bottom: 0;
+  height: 88vh;
+  overflow-y: auto; /* Enables scrolling */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000; /* Keeps it above other elements */
+}
+
+/* When sidebar is collapsed */
+.sidebar.closed {
+  width: 80px;
+}
+
+/* Sidebar Links (Ensure Scrollability) */
+.sidebar-links {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px); /* Ensures it fits within the sidebar */
+}
+
+.sidebar-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-links ul li {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 16px;
+}
+
+.sidebar-links ul li:hover {
+  background-color: #005587;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  background: #005587;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ✅ Main Content - Fully Expands Without Gap */
+.main-content {
+  padding: 20px;
+  background-color: #F3F6F8;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  margin-left: 250px; /* No space between sidebar and content */
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* ✅ When Sidebar is Closed, Main Content Becomes 100% */
+.main-content.without-sidebar {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Welcome Card */
+.welcome-card {
+  background: white;
+  padding: 30px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 0;
+  width: 100%;
+}
+
+/* Styling for h2 */
+.welcome-card h2 {
+  font-family: 'Roboto', sans-serif; /* Use Roboto for headings */
+  font-size: 30px; /* Slightly larger for emphasis */
+  font-weight: 900;
+  color: #0077B5; /* Primary LinkedIn Blue */
+  margin-bottom: 10px; /* Space below heading */
+}
+
+/* Styling for p */
+.welcome-card p {
+  font-family: Arial, sans-serif; /* Use Arial for body text */
+  font-size: 20px;
+  color: #434649; /* Secondary Slate Gray */
+  line-height: 1.5;
+}
+
+
+/* Cards Grid */
+.card-grid1 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(300px, 500px)); /* Ensures small cards with a max width */
+  gap: 40px;
+  justify-content: center; /* Center the grid within the parent */
+  margin: 0 auto; /* Centers the grid on the page */
+  max-width: 900px; /* Restricts the width to prevent excessive stretching */
+  margin-top: 30px;
+}
+
+/* Cards */
+.card1 {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px; /* Reduced padding to make cards smaller */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: 1px solid #E1E9EE;
+  width: 100%; /* Ensures cards fit within the grid */
+  width: 300px; /* Sets a fixed max width to prevent large cards */
+  height: 250px;
+
+}
+.card1 h3 {
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif; /* Apply Roboto to card headings */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card1 p {
+  font-family: Arial, sans-serif; /* Apply Arial to card body */
+  font-size: 18px;
+  color: #434649;
+  text-align: center;
+}
+
+
+.card1:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ Footer Stays at the Bottom */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+
+/* OTP Verification */
+
+
+.VerifyDoc1 button {
+  background-color: #0077B5; /* LinkedIn Blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  font-family: "Roboto", sans-serif;
+  width: 25%;
+  margin-left: 75%;
+}
+
+.VerifyDoc1 button:hover {
+  background-color: #005587; /* Darker Blue */
+}
+
+.otp-popup1 {
+  background: white;
+  border: 1px solid #86888A; /* Cool Gray */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px;
+  width: 100%;
+}
+
+.otp-popup1 p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000; /* Slate Gray */
+  font-family: "Arial", sans-serif;
+}
+
+.otp-popup1 input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 1px solid #E1E9EE; /* Light Gray */
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+.otp-popup1 button {
+  background-color: #0077B5;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  width: 75px;
+  margin-left: 0;
+  font-family: "Arial", sans-serif;
+
+}
+
+.otp-popup1 button:hover {
+  background-color: #005587;
+}
+
+/* Responsive Design */
+
+/* ✅ Medium Screens (Tablets, Small Laptops) */
+@media screen and (max-width: 1024px) {
+  /* Sidebar Collapses */
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar.closed {
+    width: 70px;
+  }
+
+  /* Adjust Main Content Width */
+  .main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+
+  .main-content.without-sidebar {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+
+  /* Cards Grid Adjusts to 2 Columns */
+  .card-grid1 {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+
+  /* Reduce Sidebar Link Padding */
+  .sidebar-links ul li {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  /* Adjust Footer */
+  footer {
+    padding: 12px;
+  }
+}
+
+/* ✅ Small Screens (Mobile Devices) */
+@media screen and (max-width: 768px) {
+  /* Sidebar Becomes Fully Collapsible */
+  .sidebar {
+    width: 0;
+    position: absolute;
+  }
+
+  .sidebar.closed {
+    width: 0;
+  }
+
+  /* Full Width for Main Content */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* Cards Grid Becomes Single Column */
+  .card-grid1 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reduce Card Size */
+  .card1 {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    padding: 15px;
+  }
+
+  /* Adjust Welcome Card */
+  .welcome-card h2 {
+    font-size: 24px;
+  }
+
+  .welcome-card p {
+    font-size: 16px;
+  }
+
+  /* Adjust OTP Button */
+  .VerifyDoc1 button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  /* Adjust OTP Popup */
+  .otp-popup1 {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .otp-popup1 input {
+    font-size: 14px;
+  }
+
+  .otp-popup1 button {
+    font-size: 13px;
+    width: 100%;
+  }
+
+  /* Adjust Sidebar Toggle Button */
+  .sidebar-toggle {
+    font-size: 18px;
+    padding: 8px;
+  }
+}
+
+/* ✅ Extra Small Screens (Phones, Small Devices) */
+@media screen and (max-width: 480px) {
+  /* Reduce Padding for Better Fit */
+  .main-content {
+    padding: 10px;
+  }
+
+  /* Reduce Card Font Sizes */
+  .card1 h3 {
+    font-size: 20px;
+  }
+
+  .card1 p {
+    font-size: 14px;
+  }
+
+  /* Adjust Buttons for Small Screens */
+  .btn-get-started {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  /* Adjust OTP Popup */
+  .otp-popup1 {
+    padding: 10px;
+  }
+
+  .otp-popup1 p {
+    font-size: 14px;
+  }
+
+  .otp-popup1 input {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .otp-popup1 button {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  /* Footer Adjustments */
+  footer {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+
+

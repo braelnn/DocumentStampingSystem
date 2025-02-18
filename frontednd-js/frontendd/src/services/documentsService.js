@@ -166,3 +166,37 @@ export const shareDocument = async (documentId, recipientEmail) => {
   }
 };
 
+export const fetchSerialNumber = async (documentId) => {
+  if (!documentId) {
+      throw new Error("Document ID is required to fetch the serial number.");
+  }
+
+  try {
+      const response = await fetch(`http://localhost:8000/documents/api/documents/${documentId}/get-serial-number/`, {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+
+      if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      return data.serial_number;
+  } catch (error) {
+      console.error("Error fetching serial number:", error);
+      throw error;
+  }
+};
+
+export const getAllDocuments = async () => {
+  try {
+    const response = await axios.get(`${API_URL}all/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching documents:", error);
+    throw error;
+  }
+};

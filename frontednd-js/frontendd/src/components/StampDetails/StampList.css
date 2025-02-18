@@ -1,28 +1,43 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .stamp-list {
-  margin-top: 0;
+  margin-top: 60px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #ffffff;
 }
-
+.stamp-list h3{
+  color: #0077B5;
+  font-size: 50px;
+  font-family: 'Roboto', sans-serif; /* Use Roboto for headings */
+  margin-left: 30%;
+  
+}
 
 
 .stamp-list table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
-  margin-top: 0;
+  margin-top: 30px;
+  margin-left: 10%;
 }
 
 .stamp-list th,
 .stamp-list td {
   padding: 10px;
-  text-align: left;
+  text-align: center;
   border: 1px solid #ddd;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .stamp-list th {
   background-color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .stamp-list td a {

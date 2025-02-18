@@ -82,3 +82,104 @@ export const verifyOTPForDocument = async (otp) => {
     throw error.response?.data || error.message;
   }
 };
+
+
+//qr-code
+export const fetchQRCode = async () => {
+  try {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+          throw new Error("Authentication token is missing. Please log in.");
+      }
+
+      const response = await fetch(`http://localhost:8000/auth/api/qr-code/`, {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+          },
+      });
+
+      if (!response.ok) {
+          if (response.status === 401) {
+              throw new Error("Unauthorized: Please log in again.");
+          }
+          throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      return data.qr_code_url;
+  } catch (error) {
+      console.error("Error fetching QR code:", error);
+      throw error;
+  }
+};
+
+export const fetchAllQRCodes = async () => {
+  try {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      throw new Error("Authentication token is missing. Please log in.");
+    }
+
+    const response = await fetch(`http://localhost:8000/auth/qr-codescollect/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Unauthorized: Please log in again.");
+      }
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.qr_codes;
+  } catch (error) {
+    console.error("Error fetching QR codes:", error);
+    throw error;
+  }
+};
+
+
+//admin
+export const getallusers = async () => {
+  try {
+    const authToken = localStorage.getItem("authToken");
+
+    const response = await axios.get("http://localhost:8000/auth/users/", {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
+
+
+export const deleteUser = async (userId) => {
+  try {
+    const authToken = localStorage.getItem("authToken");
+
+    const response = await axios.delete(`http://localhost:8000/auth/users/${userId}/`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    throw error;
+  }
+};

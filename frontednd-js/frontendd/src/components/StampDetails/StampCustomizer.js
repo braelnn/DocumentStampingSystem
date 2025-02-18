@@ -357,6 +357,8 @@ const StampCustomizer = ({ onSave }) => {
           // Pass the final base64 image to the onSave callback
           if (finalStampData) {
             onSave(finalStampData);
+            alert("Your Stamp has been created proceed to the Stamp List"); // Display message after saving
+
           }
         };
       };
@@ -364,6 +366,8 @@ const StampCustomizer = ({ onSave }) => {
       // If no THREE.js renderer exists, pass the Fabric.js data directly
       if (stampData) {
         onSave(stampData);
+        alert("Your Stamp has been created proceed to the Stamp List"); // Display message after saving
+
       }
     }
   };
@@ -402,25 +406,27 @@ const StampCustomizer = ({ onSave }) => {
           color={color}
           onChangeComplete={(color) => setColor(color.hex)}
         />
-        <button onClick={addShape}>Add Shape</button>
-        <button onClick={addText}>Add Text</button>
-        <button onClick={toggleDrawingMode}>
-          {isDrawingMode ? "Stop Drawing" : "Draw Stamp"}
-        </button>
-        <button>
-  <label>
-    Logo Stamp
-    <input
-      type="file"
-      accept="image/*"
-      onChange={addLogoStamp}
-      style={{ display: "none" }}
-    />
-  </label>
-</button>
-        
-        <button onClick={resetCanvas}>Reset</button>
-        <button onClick={saveStamp}>Save Stamp</button>
+        <div className="stamp-button">
+          <button onClick={addShape}>Add Shape</button>
+          <button onClick={addText}>Add Text</button>
+          <button onClick={toggleDrawingMode}>
+            {isDrawingMode ? "Stop Drawing" : "Draw Stamp"}
+          </button>
+          <button>
+          <label>
+            Logo Stamp
+            <input
+              type="file"
+              accept="image/*"
+              onChange={addLogoStamp}
+              style={{ display: "none" }}
+            />
+          </label>
+          </button>
+          
+          <button onClick={resetCanvas}>Reset</button>
+          <button onClick={saveStamp}>Save Stamp</button>
+        </div>
       </div>
     </div>
   );

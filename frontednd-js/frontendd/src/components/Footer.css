@@ -1,64 +1,76 @@
-.footer {
-    background-color: #434649; /* Slate Gray */
-    color: #ffffff; /* White */
-    padding: 30px 20px;
-    text-align: center;
-    font-family: 'Arial', sans-serif; /* Body text font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+.footer {
+  background-color: #434649; /* Slate Gray */
+  color: white;
+  padding: 40px 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .footer-section {
-    flex: 1;
-    min-width: 250px;
-    margin: 10px;
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
 }
 
-.footer-section h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #ffffff;
-    border-bottom: 2px solid #0077B5; /* LinkedIn Blue */
-    display: inline-block;
-    padding-bottom: 5px;
-    font-family: 'Roboto', sans-serif; /* Heading font */
+.footer-section h2 {
+  font-size: 20px;
+  color: #0077B5; /* LinkedIn Blue */
+  margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
-.footer-section p {
-    font-size: 16px;
-    margin: 5px 0;
-    font-family: Arial, Helvetica, sans-serif;
+.footer-section p,
+.footer-section ul {
+  font-size: 16px;
+  color: #F3F6F8; /* Light Gray */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-section ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-section ul li {
-    margin: 5px 0;
+  margin-bottom: 8px;
 }
 
 .footer-section ul li a {
-    color: #0077B5; /* LinkedIn Blue */
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #0099ff;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .footer-section ul li a:hover {
-    color: #005587; /* Darker LinkedIn Blue */
+  color: #0077B5;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 20px;
+  margin-right: 10px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #0077B5;
 }
 
 .footer-bottom {
-    margin-top: 20px;
-    font-size: 14px;
-    border-top: 1px solid #86888A; /* Cool Gray */
-    padding-top: 10px;
+  text-align: center;
+  padding: 15px;
+  background-color: #3A3D40;
+  font-size: 14px;
 }

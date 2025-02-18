@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { fetchSerialNumber } from "../../services/documentsService";
 
 const SerialNumber = ({ onSerialGenerated, documentId }) => {
     const [serialNumber, setSerialNumber] = useState("");
@@ -6,37 +7,23 @@ const SerialNumber = ({ onSerialGenerated, documentId }) => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        fetchSerialNumber();
+        if (documentId) {
+            handleFetchSerialNumber();
+        }
     }, [documentId]);
 
-    // Fetch Serial Number from Backend
-    const fetchSerialNumber = async () => {
-        if (!documentId) {
-            setError("Document ID is required to fetch the serial number.");
-            return;
-        }
-
+    // Fetch Serial Number
+    const handleFetchSerialNumber = async () => {
         setLoading(true);
         setError("");
 
         try {
-            const response = await fetch(`http://localhost:8000/documents/api/documents/${documentId}/get-serial-number/`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            const serial = await fetchSerialNumber(documentId);
+            setSerialNumber(serial);
 
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            setSerialNumber(data.serial_number);
-
-            // Pass the serial number to the parent component
+            // Pass serial number to the parent component
             if (onSerialGenerated) {
-                onSerialGenerated(data.serial_number);
+                onSerialGenerated(serial);
             }
         } catch (err) {
             setError(err.message || "Failed to fetch serial number.");
@@ -47,7 +34,9 @@ const SerialNumber = ({ onSerialGenerated, documentId }) => {
 
     return (
         <div className="serial-number-container">
-            {loading ? null : error ? null : null}
+            {loading && <p>Loading...</p>}
+            {error && <p className="error">{error}</p>}
+            {serialNumber && <p>Serial Number: {serialNumber}</p>}
         </div>
     );
 };

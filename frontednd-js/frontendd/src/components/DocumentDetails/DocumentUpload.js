@@ -29,9 +29,12 @@ const DocumentUpload = ({ onUpload, stamps }) => {
         await onUpload(selectedFiles[0], name, description, stamped, selectedStamp); // Send only the first file
         setSelectedFiles([]);
         setDescription("");
-        setName("");
+        setName(""); 
         setStamped(false);
         setSelectedStamp(null);
+
+        alert("The file has been uploaded proceed to the Unstamped Doc");
+
       } else {
         alert("Please select a file to upload.");
       }

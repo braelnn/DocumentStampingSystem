@@ -14,13 +14,21 @@ from io import BytesIO
 import base64
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-
-
+from django.contrib.auth.hashers import check_password
+from .serializers import UserSerializer
 
 
 
 from django.contrib.auth import get_user_model
 CustomUser = get_user_model()  # Get the correct User model
+
+class UserListView(APIView):
+    permission_classes = [IsAuthenticated]  # Ensure only authenticated users can access
+
+    def get(self, request):
+        users = CustomUser.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
 
 
 class LoginView(APIView):
@@ -34,6 +42,15 @@ class LoginView(APIView):
             # Check if user exists and validate the password
             if user and user.check_password(password):
                 request.session['email'] = email  # Store email in session
+
+                # Special Case: Superuser login
+                if email == "admin@gmail.com" and password == "admin":
+                    refresh = RefreshToken.for_user(user)
+                    return Response({
+                        'refresh': str(refresh),
+                        'access': str(refresh.access_token),
+                        'is_admin': True,  # Indicate this user is an admin
+                    }, status=status.HTTP_200_OK)
 
                 # Handle Company Users: Send OTP during login
                 if user.account_type == 'Company':
@@ -57,6 +74,7 @@ class LoginView(APIView):
                 return Response({
                     'refresh': str(refresh),
                     'access': str(refresh.access_token),
+                    'is_admin': False,  # Regular user
                 }, status=status.HTTP_200_OK)
 
             return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -169,6 +187,7 @@ class QRCodeView(APIView):
                 "username": user.username,
                 "account_type": getattr(user, "account_type", "Unknown"),
                 "is_verified": getattr(user, "is_verified", False),
+                "company_name": getattr(user, "company_name", ""),  # Include company_name
                 "company_address": getattr(user, "company_address", None)
                 if getattr(user, "account_type", "") == "Company"
                 else None,
@@ -216,6 +235,44 @@ class QRCodeView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
+class QRCodeListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            users = CustomUser.objects.all()  # Fetch all users
+            qr_codes = []
+
+            for user in users:
+                user_data = {
+                    "email": user.email,
+                    "username": user.username,
+                    "account_type": user.account_type if hasattr(user, "account_type") else "Unknown",
+                    "company_name": getattr(user, "company_name", ""),  # Include company_name
+                    "is_verified": user.is_verified,
+                }
+
+                qr_data = str(user_data)
+                if not qr_data:
+                    continue  # Skip empty QR data
+
+                qr = qrcode.make(qr_data, image_factory=qrcode.image.svg.SvgImage)
+                stream = BytesIO()
+                qr.save(stream)
+                qr_code_base64 = base64.b64encode(stream.getvalue()).decode()
+
+                qr_codes.append({
+                    "id": user.id,
+                    "username": user.username,
+                    "qr_code_url": f"data:image/svg+xml;base64,{qr_code_base64}",
+                })
+
+            return Response({"qr_codes": qr_codes}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": f"Unexpected error: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 class VerifyOTPDocView(APIView):
     def post(self, request):
         email = request.session.get('email')  # Retrieve email from session
@@ -262,3 +319,26 @@ class VerifyOTPDocVerifyView(APIView):
             return Response({'success': True, 'message': 'OTP verified'}, status=status.HTTP_200_OK)
 
         return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
+
+class UserDeleteView(APIView):
+    permission_classes = [IsAuthenticated]  # Ensure only authenticated users can delete users
+
+    def delete(self, request, user_id):
+        try:
+            user_to_delete = CustomUser.objects.get(id=user_id)
+
+            # Check if the user is the specific admin with email 'admin@gmail.com'
+            if user_to_delete.email == "admin@gmail.com":
+                return Response(
+                    {"error": "This admin user cannot be deleted."},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+            user_to_delete.delete()
+            return Response({"success": "User deleted successfully."}, status=status.HTTP_200_OK)
+
+        except CustomUser.DoesNotExist:
+            return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

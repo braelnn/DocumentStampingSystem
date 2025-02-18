@@ -127,3 +127,87 @@
 .terms a {
   color: #0077B5; /* LinkedIn Blue */
 }
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 1024px) {
+  .login-card {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px; /* Adjust height for better display */
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
+
+  .login-card {
+    width: 95%;
+    height: auto;
+  }
+
+  .card-image {
+    display: none; /* Hide image on small screens */
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .input-field {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .links {
+    font-size: 12px;
+  }
+
+  .terms {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 15px;
+  }
+
+  .card-content h2 {
+    font-size: 24px;
+  }
+
+  .input-field {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .links {
+    font-size: 12px;
+  }
+
+  .terms {
+    font-size: 10px;
+  }
+}

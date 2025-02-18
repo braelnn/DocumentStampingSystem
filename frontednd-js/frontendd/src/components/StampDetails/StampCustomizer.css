@@ -7,8 +7,8 @@
   border: 1px solid #000000;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 340px;
-  margin-left: 0;
+  width: 500px;
+  margin-left: 20%;
 }
 
 canvas {
@@ -41,18 +41,22 @@ canvas {
 }
 label {
   font-weight: bold;
-  color: #333;
+  color: #000000;
+  margin-left: 30px;
+
 }
 
 input,
-select,
-button {
-  width: 100%;
+select {
+  width: 80%;
+  margin-left: 30px;
   padding: 10px;
   border: 1px solid #0077B5;
   border-radius: 4px;
   font-size: 14px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-left: 30px;
+
 }
 
 input:focus,
@@ -61,27 +65,40 @@ button:focus {
   outline: none;
   border-color: #ffffff;
   box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+
 }
 
-button {
+.stamp-button button {
   background-color: #0077B5;
-  color: #fff;
+  color: #fdfdfd;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left: 25%;
+  font-size: 18px;
+  width: 50%;
+
+
 }
 
+
+
+
 button:hover {
-  background-color: #0a203a;
+  background-color: #ccc;
 }
 
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+  margin-left: 30px;
+
 }
 
 .sketch-picker {
-  width: 100% !important;
+  width: 85% !important;
   box-shadow: none !important;
+  margin-left: 30px;
+
 }
 .logo-stamp {
   position: absolute;

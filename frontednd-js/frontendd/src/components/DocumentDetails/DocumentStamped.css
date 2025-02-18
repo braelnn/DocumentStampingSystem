@@ -1,31 +1,68 @@
+/* General Styling */
 .document-stamped {
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin: 20px auto;
-    max-width: 800px;
-  }
-  
-  .document-stamped h2 {
-    margin-bottom: 20px;
-  }
-  
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #FFFFFF; /* White background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  overflow-x: auto;
+  margin-left: 12%;
+}
+
+/* Table Styling */
+.document-stamped table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #F3F6F8; /* Light Gray background */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.document-stamped th {
+  background: #434649; /* Slate Gray */
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.document-stamped td {
+  padding: 12px;
+  border-bottom: 1px solid #E1E9EE; /* Light border */
+}
+
+/* Alternating Row Colors */
+.document-stamped tbody tr:nth-child(even) {
+  background: #F9FAFB;
+}
+
+/* Button Styling */
+.document-stamped button {
+  background-color: #0077B5; /* LinkedIn Blue */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.document-stamped button:hover {
+  background-color: #005587; /* Slightly darker blue on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .document-stamped table {
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .document-stamped table th,
-  .document-stamped table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .document-stamped table button {
-    padding: 5px 10px;
-    cursor: pointer;
+    overflow-x: auto;
   }
 
-
-  
-  
+  .document-stamped th,
+  .document-stamped td {
+    white-space: nowrap;
+  }
+}

@@ -3,6 +3,7 @@ import "./StampList.css";
 
 const StampList = ({ stamps, onDelete, onRename, onDownload }) => (
   <div className="stamp-list">
+    <h3>Available Stamps</h3>
     <table>
       <thead>
         <tr>

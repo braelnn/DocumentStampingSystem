@@ -1,49 +1,125 @@
+/* Document Canvas Styling */
 .document-canvas {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
+  padding: 20px;
+  background-color: #F3F6F8; /* Light gray background */
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
+/* Navigation and Interaction Controls */
 .navigation-controls,
 .interaction-controls {
+  display: flex;
+  gap: 10px;
   margin: 10px 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.navigation-controls button {
-  margin: 0 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  width: 80px;
-  size: 5px;
-  font-size: 12px;
-
-
-}
-
+.navigation-controls button,
 .interaction-controls button {
-  margin: 0 5px;
   padding: 8px 12px;
   cursor: pointer;
-  width: 100px;
-  font-size: 12px;
-  margin-bottom: 5px;
-  
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #0077B5; /* Primary blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  gap: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.navigation-controls button:hover,
+.interaction-controls button:hover {
+  background-color: #005587; /* Slightly darker blue for hover */
+  transform: translateY(-2px);
+}
+
+/* Actions Styling */
 .actions button {
   margin: 0 5px;
-  
   cursor: pointer;
   width: 200px;
-  font-size: 16px;
   margin-top: 15px;
-  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
   background-color: #0077B5;
-  border-radius: rgb(212, 88, 88);
+  border: none;
+  border-radius: 8px;
   margin-bottom: 15px;
-  
+
 }
 
+
+.actions button:hover {
+  background-color: #005587;
+  transform: translateY(-2px);
+}
+
+/* Stamps Preview Section */
+.stamps-preview {
+  margin-top: 20px;
+  text-align: center;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Stamps Container */
+.stamps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Stamp Item */
+.stamp-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #E1E9EE;
+  border-radius: 8px;
+  padding: 10px;
+  width: 90px;
+  height: 130px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stamp-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Stamp Image */
+.stamp-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+/* Stamp Name */
+.stamp-item p {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #434649; /* Slate Gray */
+}
+
+/* Bookmark List */
 .bookmarks ul {
   list-style-type: none;
   padding: 0;
@@ -52,101 +128,62 @@
 .bookmarks li {
   margin: 5px 0;
 }
+
+/* Mirror Mode for Stamps */
 .mirror-mode {
   transform: scaleX(-1);
 }
 
-.stamps-preview {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.stamps-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.stamp-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 8px;
-  width: 80px; /* Adjust the width to reduce size */
-  height: 120px; /* Adjust the height */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.stamp-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.stamp-image {
-  width: 60px; /* Reduce image size */
-  height: 60px; /* Keep the aspect ratio square */
-  object-fit: cover;
-  margin-bottom: 5px;
-  border-radius: 3px; /* Optional rounded corners */
-}
-
-.stamp-item p {
-  font-size: 12px; /* Reduce font size for stamp name */
-  text-align: center;
-  margin: 0;
-  color: #333;
-}
-
+/* PDF Document Canvas */
 .pdf-document canvas {
   pointer-events: auto;
 }
+
+/* Stamp Wrapper */
 .stamp-wrapper {
   position: absolute;
-  border: 1px dashed gray;
+  border: 1px dashed #86888A; /* Cool Gray */
   box-sizing: border-box;
   cursor: grab;
 }
+
 .stamp-wrapper:active {
   cursor: grabbing;
 }
 
+/* Toggle Visibility Section */
 .toggle-visibility {
   display: flex;
   align-items: center;
   margin: 10px 0;
-  padding: 8px;
-  background-color: #f9f9f9; /* Light background for contrast */
-  border: 1px solid #ddd; /* Light border for separation */
-  border-radius: 5px; /* Rounded corners */
-  font-size: 14px; /* Adjust font size for readability */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 10px;
+  background-color: #F3F6F8; /* Light background */
+  border: 1px solid #E1E9EE; /* Subtle border */
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-visibility label {
   display: flex;
   align-items: center;
-  cursor: pointer; /* Pointer cursor for better UX */
-  color: #333; /* Dark text for contrast */
-  font-weight: 500; /* Slightly bolder text */
+  cursor: pointer;
+  color: #434649;
+  font-weight: 500;
 }
 
 .toggle-visibility input[type="checkbox"] {
-  margin-right: 8px; /* Space between checkbox and label text */
+  margin-right: 8px;
   width: 16px;
   height: 16px;
-  accent-color: #0077B5; /* Custom accent color for the checkbox */
+  accent-color: #0077B5;
 }
 
 .toggle-visibility input[type="checkbox"]:hover {
-  filter: brightness(1.2); /* Slight hover effect on the checkbox */
+  filter: brightness(1.2);
 }
 
 .toggle-visibility label:hover {
-  color: #0077B5; /* Change label color on hover */
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
+  color: #0077B5;
+  transition: color 0.3s ease;
 }
-

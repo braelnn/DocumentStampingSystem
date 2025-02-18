@@ -35,7 +35,13 @@ const DocumentUnstamped = ({ unstampedDocuments, onSelectDocument }) => {
                 </a>
               </td>
               <td>
-                <button onClick={() => onSelectDocument(doc)}>Stamp</button>
+              <button onClick={() => {
+                alert("Your Document is ready for Stamping. Proceed to Document Canvas"); // Display message when button is clicked
+                onSelectDocument(doc); // Call the original function
+              }}>
+                Stamp
+              </button>
+
               </td>
             </tr>
           ))}

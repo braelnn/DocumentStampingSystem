@@ -7,4 +7,6 @@ router.register(r"documents", DocumentViewSet)
 
 urlpatterns = [
     path("api/", include(router.urls)),
+    path("api/documents/all/", DocumentViewSet.as_view({'get': 'get_all_documents'}), name="all-documents"),
+
 ]

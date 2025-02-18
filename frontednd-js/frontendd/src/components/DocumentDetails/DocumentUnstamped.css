@@ -1,28 +1,75 @@
+/* General Styling */
 .document-unstamped {
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin: 20px auto;
-    max-width: 800px;
-  }
-  
-  .document-unstamped h2 {
-    margin-bottom: 20px;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E1E9EE; /* Subtle border */
+  margin-left: 10%;
+  width: 80%;
+
+
+}
+
+/* Table Styling */
+.document-unstamped table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+}
+
+.document-unstamped th, 
+.document-unstamped td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #E1E9EE;
+}
+
+.document-unstamped th {
+  background: #434649;
+  color: white;
+  font-weight: bold;
+}
+
+/* Links */
+.document-unstamped a {
+  color: #0077B5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.document-unstamped a:hover {
+  text-decoration: underline;
+  color: #005587;
+}
+
+/* Button Styling */
+.document-unstamped button {
+  background: #0077B5;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease-in-out;
+}
+
+.document-unstamped button:hover {
+  background: #005587;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .document-unstamped table {
-    width: 100%;
-    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
   
-  .document-unstamped table th,
-  .document-unstamped table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+  .document-unstamped th, 
+  .document-unstamped td {
+    padding: 8px;
   }
-  
-  .document-unstamped table button {
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
+}
