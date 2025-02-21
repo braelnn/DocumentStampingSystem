@@ -197,7 +197,7 @@ const AdminDashboard = () => {
                         <img
                             src={stamp.preview}
                             alt="preview"
-                            style={{ width: "200px", height: "200px" }}
+                            style={{ width: "300px", height: "300px" }}
                         />
                     </td>
                     <td>{new Date(stamp.created_at).toLocaleDateString()}</td>
